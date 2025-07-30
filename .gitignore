@@ -7,6 +7,7 @@ release.properties
 .flattened-pom.xml
 *mvnw
 *mvnw.cmd
+*maven-wrapper.jar
 
 # Eclipse
 .project
@@ -45,3 +46,4 @@ nb-configuration.xml
 /.quarkus/cli/plugins/
 # TLS Certificates
 .certs/
+
