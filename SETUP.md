@@ -29,4 +29,4 @@ To package use (optionally with `clean`):
 ```shell
 mvn package
 ``` 
-The `quarkus-run.jar` under `target/quarkus-app` is not an Uber JAR, it depends on `target/quarkus-app/lib`.
+The `quarkus-run.jar` under `target/quarkus-app` is not an Uber JAR, it depends on `target/quarkus-app/lib`. 
