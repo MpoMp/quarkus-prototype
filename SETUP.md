@@ -30,3 +30,15 @@ To package use (optionally with `clean`):
 mvn package
 ``` 
 The `quarkus-run.jar` under `target/quarkus-app` is not an Uber JAR, it depends on `target/quarkus-app/lib`. 
+
+Create Linux executable without GraalVM (using Docker):
+```shell
+./mvnw install -Dnative -DskipTests -Dquarkus.native.container-build=true
+```
+
+JVM mode with JAR: 
+```shell
+java -jar target/quarkus-app/quarkus-run.jar 
+```
+
+Native executable; use the `runner` under `target`.
