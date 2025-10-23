@@ -21,7 +21,7 @@ Some setup decisions are to be taken here.
 _What is the change that we're proposing and/or doing?_ 
 
 The framework to be used will be Quarkus. 
-Upgrades will be done using their tooling, e.g. running  `./mvnw io.quarkus.platform:quarkus-maven-plugin:3.25.0:update -N` 
+Upgrades will be done using their tooling, e.g. running  `mvn io.quarkus.platform:quarkus-maven-plugin:3.25.0:update -N` 
 at the root directory of the Maven project.
 
 For the build/development setup, [Maven](https://quarkus.io/guides/maven-tooling) will be used to handle setup and 

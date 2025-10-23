@@ -20,7 +20,7 @@ mvn io.quarkus.platform:quarkus-maven-plugin:3.23.0:create \
 
 You can use the Maven wrapper, if you prefer so.
 
-Use:
+To run in dev mode, use:
 ```shell
 mvn quarkus:dev
 ```

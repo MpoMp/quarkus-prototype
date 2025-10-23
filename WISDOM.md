@@ -5,5 +5,5 @@
   - TL;DR, Use `@QuarkusIntegrationTest` for tests treating the application as a black box
   - use `@QuarkusTest` for tests bringing up the DI framework, which is the kind of unit testing that Quarkus encourages
   - use `QuarkusComponentTestExtension` if you want unit tests with basic DI and mocks; https://quarkus.io/guides/testing-components
-  - or use test framework annotations if you really want plain unit tests.
+  - or use test framework annotations if you REALLY want plain unit tests.
 
