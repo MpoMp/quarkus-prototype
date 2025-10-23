@@ -12,6 +12,13 @@ mvn io.quarkus.platform:quarkus-maven-plugin:3.23.0:create \
     -Dextensions="quarkus-rest"
 ```
 
+## Updates
+
+Use: 
+```shell
+mvn io.quarkus.platform:quarkus-maven-plugin:3.25.0:update -N
+```
+
 ## Tooling 
 
 [HTTPie](https://httpie.io/) is the preferred tool to access the exposed APIs.
