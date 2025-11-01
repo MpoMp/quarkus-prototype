@@ -2,6 +2,11 @@
 
 Details on the architecture and implementation for the car rental system of the book. 
 
+## Modules 
+
+Each module contains the implementation of a service or library. 
+There's the `sandbox` module which contains dummy, PoC or experimental code. 
+
 ## Port mapping 
 
 `localhost`

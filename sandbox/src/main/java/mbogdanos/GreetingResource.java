@@ -1,4 +1,4 @@
-package dev.mbogdanos;
+package mbogdanos;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;

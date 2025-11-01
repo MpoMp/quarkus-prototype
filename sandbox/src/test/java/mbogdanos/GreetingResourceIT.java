@@ -1,4 +1,4 @@
-package dev.mbogdanos;
+package mbogdanos;
 
 import io.quarkus.test.junit.QuarkusIntegrationTest;
 import org.junit.jupiter.api.Test;

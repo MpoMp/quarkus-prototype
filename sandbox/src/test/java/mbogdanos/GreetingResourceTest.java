@@ -1,4 +1,4 @@
-package dev.mbogdanos;
+package mbogdanos;
 
 import io.quarkus.test.junit.QuarkusTest;
 import org.eclipse.microprofile.config.inject.ConfigProperty;

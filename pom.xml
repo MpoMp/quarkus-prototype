@@ -9,6 +9,7 @@
 
     <modules>
         <module>reservation-service</module>
+        <module>sandbox</module>
     </modules>
 
     <properties>
