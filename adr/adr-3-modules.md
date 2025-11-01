@@ -1,0 +1,41 @@
+
+# ADR-3: Module design
+
+## Status
+
+**Status:** Active
+
+**Proposed by:** Michalis Bogdanos
+
+**Authored by:** Michalis Bogdanos
+
+## Context
+
+_What is the issue that we're seeing that is motivating this decision or change?_ 
+
+A need for having multiple services live under the same repository. 
+Library modules will also live in here.
+
+## Decision
+
+_What is the change that we're proposing and/or doing?_ 
+
+The root project shall be used as a parent with the Quarkus platform. 
+All applications and libraries will be implemented within their own Maven subprojects.
+
+## Consequences
+
+### Pros 
+
+_List the advantages of the decision here._
+
+- A single repository.
+- A single parent BOM.
+- Each submodule is free to use its own extensions.
+- We can host multiple applications in the same repository.
+
+### Cons
+
+_List the disadvantages of the decision here._
+
+- Bit of extra Maven complexity.

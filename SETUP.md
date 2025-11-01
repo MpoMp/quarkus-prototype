@@ -30,6 +30,7 @@ You can use the Maven wrapper, if you prefer so.
 To run in dev mode, use:
 ```shell
 mvn quarkus:dev
+cd reservation-service/ && mvn quarkus:dev
 ```
 
 To package use (optionally with `clean`): 
