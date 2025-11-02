@@ -20,8 +20,7 @@ Library modules will also live in here.
 
 _What is the change that we're proposing and/or doing?_ 
 
-The root project shall be used as a parent with the Quarkus platform. 
-All applications and libraries will be implemented within their own Maven subprojects.
+All applications and libraries will be implemented within their own Maven project.
 
 ## Consequences
 
@@ -30,12 +29,11 @@ All applications and libraries will be implemented within their own Maven subpro
 _List the advantages of the decision here._
 
 - A single repository.
-- A single parent BOM.
-- Each submodule is free to use its own extensions.
+- Each module is free to use its own extensions.
 - We can host multiple applications in the same repository.
 
 ### Cons
 
 _List the disadvantages of the decision here._
 
-- Bit of extra Maven complexity.
+- Much duplication. 

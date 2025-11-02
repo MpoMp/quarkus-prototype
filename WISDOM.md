@@ -9,4 +9,4 @@
 - For dynamic config (e.g. on K8S) use JVM system props or environment variables. 
   - Precedence (evaluation starts from right); `system <- env <- application.properties`
   - Example with env var, run with `GREETING="STAHP" mvn quarkus:dev` which will override the application config.
-  - 
+- Why multi-module with separate apps is not encouraged by the Quarkus Maven setup; https://github.com/quarkusio/quarkus/issues/42750#issuecomment-2309537445 
