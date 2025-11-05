@@ -1,5 +1,6 @@
 package dev.reservationsrvc.biz.reservation;
 
+import dev.reservationsrvc.persistence.reservation.Reservation;
 import dev.reservationsrvc.persistence.reservation.ReservationRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -26,5 +27,11 @@ class ReservationManagerImpl implements ReservationManager{
         return reservationRepository.findAll().stream()
                 .map(reservationMapper::mapToDto)
                 .toList();
+    }
+
+    @Override
+    public ReservationDto createReservation(ReservationDto reservationDto) {
+        Reservation savedReservation = reservationRepository.save(reservationMapper.mapFromDto(reservationDto));
+        return reservationMapper.mapToDto(savedReservation);
     }
 }

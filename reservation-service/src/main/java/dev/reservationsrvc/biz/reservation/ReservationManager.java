@@ -7,4 +7,6 @@ import java.util.List;
 @NullMarked
 public interface ReservationManager {
     List<ReservationDto> findAll();
+
+    ReservationDto createReservation(ReservationDto reservationDto);
 }

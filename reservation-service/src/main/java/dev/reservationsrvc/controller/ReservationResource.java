@@ -4,12 +4,20 @@ import dev.reservationsrvc.biz.inventory.CarDto;
 import dev.reservationsrvc.biz.inventory.CarManager;
 import dev.reservationsrvc.biz.reservation.ReservationDto;
 import dev.reservationsrvc.biz.reservation.ReservationManager;
+import dev.reservationsrvc.util.ValidationUtils;
 import jakarta.inject.Inject;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
 import org.jboss.resteasy.reactive.RestQuery;
+import org.jboss.resteasy.reactive.RestResponse;
+import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 import org.jspecify.annotations.NullMarked;
 
 import java.time.LocalDate;
@@ -26,12 +34,24 @@ public class ReservationResource {
 
     private final ReservationManager reservationManager;
     private final CarManager carManager;
+    private final ReservationReqRspMapper reservationReqRspMapper;
 
     @Inject
     public ReservationResource(ReservationManager reservationManager,
-                               CarManager carManager) {
+                               CarManager carManager,
+                               ReservationReqRspMapper reservationReqRspMapper) {
         this.reservationManager = reservationManager;
         this.carManager = carManager;
+        this.reservationReqRspMapper = reservationReqRspMapper;
+    }
+
+    /**
+     * When defined within a class, such a mapper is wired only for the methods of that class.
+     */
+    @ServerExceptionMapper
+    public RestResponse<String> mapException(IllegalArgumentException iae) {
+        // TODO not serialized to proper JSON?  https://github.com/quarkusio/quarkus/issues/36155
+        return RestResponse.status(Response.Status.BAD_REQUEST, iae.getLocalizedMessage());
     }
 
     ///
@@ -39,12 +59,9 @@ public class ReservationResource {
     ///
     @GET
     @Path("availability")
-    public Collection<CarRsp> getAvailableCars(@RestQuery LocalDate startDate,
-                                               @RestQuery LocalDate endDate) {
-        // TODO errorresponse and proper null handling
-        if (startDate.isAfter(endDate)) {
-            throw new IllegalArgumentException("Start date cannot be after end date!");
-        }
+    public Collection<CarRsp> getAvailableCars(@NotNull @RestQuery LocalDate startDate,
+                                               @NotNull @RestQuery LocalDate endDate) {
+        ValidationUtils.validateDateInterval(startDate, endDate);
 
         List<CarDto> availableCars = carManager.findAllCars();
 
@@ -62,10 +79,22 @@ public class ReservationResource {
         }
 
         return carsById.values().stream()
-                .map(car -> new CarRsp(car.licensePlate(),
-                        car.manufacturer(),
-                        car.model()))
+                .map(car -> new CarRsp(car.id(),
+                                       car.licensePlate(),
+                                       car.manufacturer(),
+                                       car.model()))
                 .toList();
+    }
+
+    /// Better test with [Swagger UI;](http://localhost:8081/q/swagger-ui/). :)
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public ReservationRsp make(@Valid ReservationReq reservationRequest) {
+        ValidationUtils.validateDateInterval(reservationRequest.startDate(), reservationRequest.endDate());
+        var reservationDto = reservationReqRspMapper.mapToDto(reservationRequest);
+
+        ReservationDto createdReservation = reservationManager.createReservation(reservationDto);
+        return reservationReqRspMapper.mapFromDto(createdReservation);
     }
 
 

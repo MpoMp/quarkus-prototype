@@ -27,6 +27,7 @@ Model (domain) classes (a.k.a. entities) shall be defined per layer to allow for
   - Unless an external entity is used in which case that one will be kept; e.g. `CarObj` from a third-party library
 - Business layer shall use the DTO suffix; e.g. `CarDto`
 - Endpoint/Presentation layer shall use the `Rsp` suffix (as in Response); e.g. `CarRsp`
+  - For requests, the suffix shall be `Req`.
 
 ## Consequences
 

@@ -10,7 +10,7 @@ workspace "Quarkus Prototype" "A set of PoC applications" {
                 biz = component "Business Layer"
                 infra = component "Infrastructure Layer"
                 pers = component "Persistence Layer"
-
+                util = component "Utility Component"
 
             }
 
@@ -20,6 +20,12 @@ workspace "Quarkus Prototype" "A set of PoC applications" {
         ctrl -> biz "Invokes"
         biz -> infra "Invokes"
         biz -> pers "Invokes"
+
+        ctrl -> util "Invokes"
+        biz -> util "Invokes"
+        biz -> util "Invokes"
+        infra -> util "Invokes"
+        pers -> util "Invokes"
 }
 
     views {

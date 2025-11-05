@@ -1,25 +1,27 @@
 package dev.reservationsrvc.biz.reservation;
 
+import dev.reservationsrvc.persistence.reservation.Reservation;
+import dev.reservationsrvc.util.ValidationUtils;
 import org.jspecify.annotations.NullMarked;
-import org.jspecify.annotations.Nullable;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Optional;
 
 
 /**
  *
- * @param id when null, it is implied that the instance has not been persisted
+ * @param id when empty, it is implied that the instance has not been persisted
  */
 @NullMarked
 public record ReservationDto(
-        @Nullable Long id,
+        Optional<Long> id,
         Long carId,
         LocalDate startDate,
         LocalDate endDate
 ) {
     public ReservationDto(Long carId, LocalDate startDate, LocalDate endDate) {
-        this(null, carId, startDate, endDate);
+        this(Optional.empty(), carId, startDate, endDate);
     }
 
     /**
@@ -28,9 +30,7 @@ public record ReservationDto(
      * @throws IllegalArgumentException if the start date is after the end date
      */
     public ReservationDto {
-        if (startDate.isAfter(endDate)) {
-            throw new IllegalArgumentException("Start date cannot be after end date!");
-        }
+        ValidationUtils.validateDateInterval(startDate, endDate);
     }
 
     @Override

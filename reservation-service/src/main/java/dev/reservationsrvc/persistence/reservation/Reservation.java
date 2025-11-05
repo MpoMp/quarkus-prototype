@@ -1,5 +1,6 @@
 package dev.reservationsrvc.persistence.reservation;
 
+import dev.reservationsrvc.util.ValidationUtils;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
@@ -14,11 +15,11 @@ import java.util.Objects;
 @NullMarked
 public record Reservation(
         @Nullable Long id,
-        String carId,
+        Long carId,
         LocalDate startDate,
         LocalDate endDate
 ) {
-    public Reservation(String carId, LocalDate startDate, LocalDate endDate) {
+    public Reservation(Long carId, LocalDate startDate, LocalDate endDate) {
         this(null, carId, startDate, endDate);
     }
 
@@ -28,9 +29,7 @@ public record Reservation(
      * @throws IllegalArgumentException if the start date is after the end date
      */
     public Reservation {
-        if (startDate.isAfter(endDate)) {
-            throw new IllegalArgumentException("Start date cannot be after end date!");
-        }
+        ValidationUtils.validateDateInterval(startDate, endDate);
     }
 
     @Override
@@ -43,16 +42,6 @@ public record Reservation(
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
-    }
-
-    /**
-     * Determines if the current reservation overlaps with another reservation.
-     *
-     * @param other the reservation to compare with the current reservation
-     * @return true if the reservations overlap, false otherwise
-     */
-    public boolean isOverlapping(Reservation other) {
-        return !(startDate.isAfter(other.endDate) || endDate.isBefore(other.startDate));
     }
 
     public Reservation copyWithId(Long id) {

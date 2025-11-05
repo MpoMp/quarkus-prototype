@@ -51,6 +51,12 @@
             <artifactId>quarkus-smallrye-openapi</artifactId>
         </dependency>
 
+        <!--  Used for API request validations.  -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-hibernate-validator</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.jspecify</groupId>
             <artifactId>jspecify</artifactId>
@@ -110,6 +116,16 @@
                 <version>${compiler-plugin.version}</version>
                 <configuration>
                     <parameters>true</parameters>
+
+                    <compilerArgs>
+                        <!-- Fail on unmapped properties by default! -->
+                        <arg>
+                            -Amapstruct.unmappedTargetPolicy=ERROR
+                        </arg>
+                        <arg>
+                            -Amapstruct.unmappedSourcePolicy=ERROR
+                        </arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>
