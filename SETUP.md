@@ -50,3 +50,12 @@ java -jar target/quarkus-app/quarkus-run.jar
 ```
 
 Native executable; use the `runner` under `target`.
+
+## Structurizr 
+
+C4 diagrams, please! Using Structurizr Lite; https://docs.structurizr.com/lite
+
+Run with:
+```shell
+docker run -it --rm -p 4080:8080 -v PROJECTS_ROOT/quarkus-prototype/structurizr:/usr/local/structurizr structurizr/lite
+```

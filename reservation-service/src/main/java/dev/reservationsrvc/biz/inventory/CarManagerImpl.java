@@ -1,6 +1,6 @@
 package dev.reservationsrvc.biz.inventory;
 
-import dev.reservationsrvc.integration.inventory.InventoryClient;
+import dev.reservationsrvc.infra.inventory.InventoryClient;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.jspecify.annotations.NullMarked;

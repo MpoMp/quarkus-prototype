@@ -1,4 +1,4 @@
-package dev.reservationsrvc.integration.inventory;
+package dev.reservationsrvc.infra.inventory;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import org.jspecify.annotations.NullMarked;

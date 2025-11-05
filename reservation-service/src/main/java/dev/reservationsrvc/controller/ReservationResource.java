@@ -1,4 +1,4 @@
-package dev.reservationsrvc.endpoint;
+package dev.reservationsrvc.controller;
 
 import dev.reservationsrvc.biz.inventory.CarDto;
 import dev.reservationsrvc.biz.inventory.CarManager;
@@ -17,7 +17,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 
 @Path("reservation")
@@ -35,7 +34,8 @@ public class ReservationResource {
         this.carManager = carManager;
     }
 
-    /// `http GET http://localhost:8081/reservation/availability startDate==2022-01-01 endDate==2022-01-05`
+    ///
+    /// Invoke with: ```http GET :8081/reservation/availability startDate==2022-01-01 endDate==2022-01-05```
     ///
     @GET
     @Path("availability")

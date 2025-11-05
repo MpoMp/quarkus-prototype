@@ -1,6 +1,6 @@
 package dev.reservationsrvc.biz.inventory;
 
-import dev.reservationsrvc.integration.inventory.Car;
+import dev.reservationsrvc.infra.inventory.Car;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
