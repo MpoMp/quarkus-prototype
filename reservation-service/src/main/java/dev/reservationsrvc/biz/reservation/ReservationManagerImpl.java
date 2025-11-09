@@ -10,7 +10,7 @@ import java.util.List;
 
 @ApplicationScoped
 @NullMarked
-class ReservationManagerImpl implements ReservationManager{
+class ReservationManagerImpl implements ReservationManager {
 
     private final ReservationRepository reservationRepository;
     private final ReservationMapper reservationMapper;
@@ -25,8 +25,8 @@ class ReservationManagerImpl implements ReservationManager{
     @Override
     public List<ReservationDto> findAll() {
         return reservationRepository.findAll().stream()
-                .map(reservationMapper::mapToDto)
-                .toList();
+                       .map(reservationMapper::mapToDto)
+                       .toList();
     }
 
     @Override

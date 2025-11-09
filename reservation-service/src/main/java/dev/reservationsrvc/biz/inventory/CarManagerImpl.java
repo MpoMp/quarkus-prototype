@@ -24,7 +24,7 @@ public class CarManagerImpl implements CarManager {
     @Override
     public List<CarDto> findAllCars() {
         return inventoryClient.allCars().stream()
-                .map(carMapper::mapToDto)
-                .toList();
+                       .map(carMapper::mapToDto)
+                       .toList();
     }
 }

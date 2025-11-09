@@ -79,11 +79,11 @@ public class ReservationResource {
         }
 
         return carsById.values().stream()
-                .map(car -> new CarRsp(car.id(),
-                                       car.licensePlate(),
-                                       car.manufacturer(),
-                                       car.model()))
-                .toList();
+                       .map(car -> new CarRsp(car.id(),
+                                              car.licensePlate(),
+                                              car.manufacturer(),
+                                              car.model()))
+                       .toList();
     }
 
     /// Better test with [Swagger UI;](http://localhost:8081/q/swagger-ui/). :)
