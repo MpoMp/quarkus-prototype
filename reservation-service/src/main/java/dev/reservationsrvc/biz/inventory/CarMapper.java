@@ -1,10 +1,10 @@
 package dev.reservationsrvc.biz.inventory;
 
-import dev.reservationsrvc.infra.inventory.Car;
+import dev.inventory.integration.CarView;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.CDI)
 interface CarMapper {
-    CarDto mapToDto(Car car);
+    CarDto mapToDto(CarView car);
 }

@@ -12,11 +12,11 @@
     </parent>
 
     <groupId>dev.mbogdanos</groupId>
-    <artifactId>reservation-service</artifactId>
+    <artifactId>inventory-integration-contract</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <compiler-plugin.version>3.14.0</compiler-plugin.version>
+        <compiler-plugin.version>3.14.1</compiler-plugin.version>
         <maven.compiler.release>21</maven.compiler.release>
         <surefire-plugin.version>3.5.4</surefire-plugin.version>
 
@@ -28,89 +28,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-jackson</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-client-jackson</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-openapi</artifactId>
-        </dependency>
-
-        <!--  Used for API request validations.  -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-hibernate-validator</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.jspecify</groupId>
             <artifactId>jspecify</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>dev.mbogdanos.</groupId>
-            <artifactId>rental-integration-contract</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>dev.mbogdanos.</groupId>
-            <artifactId>inventory-integration-contract</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <!-- PROVIDED SCOPE -->
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <!-- TEST SCOPE -->
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-junit5</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>${quarkus.platform.group-id}</groupId>
-                <artifactId>quarkus-maven-plugin</artifactId>
-                <version>${quarkus.platform.version}</version>
-                <extensions>true</extensions>
-                <executions>
-                    <execution>
-                        <goals>
-                            <!-- Generates the final application artifacts. -->
-                            <goal>build</goal>
-                            <!-- Generates the source code that is generated before the source compilation (e.g. gRPC protofiles). -->
-                            <goal>generate-code</goal>
-                            <goal>generate-code-tests</goal>
-                            <goal>native-image-agent</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${compiler-plugin.version}</version>
@@ -160,20 +84,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <!-- When running the package goal with this profile, you get the native executable. -->
-        <profile>
-            <id>native</id>
-            <activation>
-                <property>
-                    <name>native</name>
-                </property>
-            </activation>
-            <properties>
-                <skipITs>false</skipITs>
-                <quarkus.native.enabled>true</quarkus.native.enabled>
-            </properties>
-        </profile>
-    </profiles>
 </project>

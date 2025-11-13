@@ -1,9 +1,9 @@
-package dev.reservationsrvc.infra.inventory;
+package dev.inventory.integration;
 
 import org.jspecify.annotations.NullMarked;
 
 @NullMarked
-public record Car(
+public record CarView(
         Long id,
         String licensePlate,
         String manufacturer,

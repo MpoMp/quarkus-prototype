@@ -1,6 +1,5 @@
 package dev.reservationsrvc.biz.reservation;
 
-import dev.rental.integration.RentalRsp;
 import dev.reservationsrvc.infra.rental.RentalClient;
 import dev.reservationsrvc.persistence.reservation.Reservation;
 import dev.reservationsrvc.persistence.reservation.ReservationRepository;
@@ -43,7 +42,7 @@ class ReservationManagerImpl implements ReservationManager {
 
         if (savedReservation.startDate().equals(LocalDate.now())) {
             //TODO proper user ID
-            var rentalRsp = rentalClient.start("-1", savedReservation.id());
+            var rentalRsp = rentalClient.start("RSRV-SRVC", savedReservation.id());
             Log.infof("Rental started for reservation ID %d with rental ID %d", savedReservation.id(), rentalRsp.id());
         }
 
