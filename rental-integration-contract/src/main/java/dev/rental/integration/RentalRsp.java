@@ -1,4 +1,4 @@
-package dev.rentalsrvc.controller;
+package dev.rental.integration;
 
 import java.time.LocalDate;
 
