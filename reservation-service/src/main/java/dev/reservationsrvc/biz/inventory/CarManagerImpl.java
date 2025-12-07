@@ -1,6 +1,8 @@
 package dev.reservationsrvc.biz.inventory;
 
+import dev.reservationsrvc.infra.inventory.GraphQLInventoryClient;
 import dev.reservationsrvc.infra.inventory.InventoryClient;
+import io.smallrye.graphql.client.GraphQLClient;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.jspecify.annotations.NullMarked;
@@ -15,7 +17,7 @@ public class CarManagerImpl implements CarManager {
     private final CarMapper carMapper;
 
     @Inject
-    public CarManagerImpl(InventoryClient inventoryClient,
+    public CarManagerImpl(@GraphQLClient("inventory") GraphQLInventoryClient inventoryClient,
                           CarMapper carMapper) {
         this.inventoryClient = inventoryClient;
         this.carMapper = carMapper;

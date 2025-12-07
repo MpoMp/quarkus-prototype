@@ -1,10 +1,11 @@
-package dev.inventory.integration;
+package dev.inventorysrvc.controller;
 
 import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 @NullMarked
 public record CarView(
-        Long id,
+        @Nullable Long id,
         String licensePlate,
         String manufacturer,
         String model

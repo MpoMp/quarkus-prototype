@@ -11,7 +11,6 @@
         <relativePath>../dependency-versions/pom.xml</relativePath>
     </parent>
 
-    <groupId>dev.mbogdanos</groupId>
     <artifactId>inventory-service</artifactId>
     <version>1.0-SNAPSHOT</version>
 

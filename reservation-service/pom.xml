@@ -59,14 +59,13 @@
         </dependency>
 
         <dependency>
-            <groupId>dev.mbogdanos.</groupId>
-            <artifactId>rental-integration-contract</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-graphql-client</artifactId>
         </dependency>
 
         <dependency>
             <groupId>dev.mbogdanos.</groupId>
-            <artifactId>inventory-integration-contract</artifactId>
+            <artifactId>rental-integration-contract</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
