@@ -11,5 +11,4 @@ interface CarMapper {
     CarView map(Car car);
 
     Car map(CarView car);
-
 }
