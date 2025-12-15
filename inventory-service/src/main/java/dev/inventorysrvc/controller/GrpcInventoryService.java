@@ -6,6 +6,8 @@ import dev.inventorysrvc.contract.RemoveCarRequest;
 import dev.inventorysrvc.persistence.Car;
 import dev.inventorysrvc.persistence.CarInventory;
 import io.quarkus.grpc.GrpcService;
+import io.quarkus.logging.Log;
+import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 import jakarta.inject.Inject;
 import org.jspecify.annotations.NullMarked;
@@ -52,9 +54,9 @@ public class GrpcInventoryService implements dev.inventorysrvc.contract.Inventor
         List<Car> cars = carInventory.getAllCars();
 
         Optional<Car> carOptional = cars.stream().filter(car -> car.licensePlate().equals(request.getLicensePlateNumber()))
-                                      .findFirst();
+                                            .findFirst();
 
-        if(carOptional.isPresent()){
+        if (carOptional.isPresent()) {
             Car removedCar = carOptional.get();
             cars.remove(removedCar);
 
@@ -67,7 +69,37 @@ public class GrpcInventoryService implements dev.inventorysrvc.contract.Inventor
                                            .setId(removedCar.id())
                                            .build()
                            );
-        }else{
+        } else {
             return Uni.createFrom().nullItem();
-        }}
+        }
+    }
+
+    /**
+     * Uses bidirectional gRPC streaming.
+     */
+    @Override
+    public Multi<CarResponse> addStreaming(Multi<InsertCarRequest> requestStream) {
+        return requestStream
+                       .map(req -> {
+                                Car newCar = new Car(null,
+                                                     req.getLicensePlateNumber(),
+                                                     req.getManufacturer(),
+                                                     req.getModel());
+
+                                return carInventory.saveCar(newCar);
+                            }
+                       )
+                       .onItem()
+                       .invoke(car -> {
+                           Log.info("Persisted car: " + car);
+                           // we could be saving the car here
+                       })
+                       .map(car -> CarResponse.newBuilder()
+                                           .setLicensePlateNumber(car.licensePlate())
+                                           .setManufacturer(car.manufacturer())
+                                           .setModel(car.model())
+                                           .setId(car.id())
+                                           .build());
+    }
+
 }
