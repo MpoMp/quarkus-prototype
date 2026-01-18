@@ -2,12 +2,12 @@ package dev.reservationsrvc.persistence.reservation;
 
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
-import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 @QuarkusTest
 class ReservationRepositoryTest {
@@ -25,7 +25,6 @@ class ReservationRepositoryTest {
         Reservation result = unitUnderTest.save(reservation);
 
         assertThat(result.id()).isNotNull();
-
         assertThat(result).isEqualTo(reservation.copyWithId(result.id()));
     }
 }
