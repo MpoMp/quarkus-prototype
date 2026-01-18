@@ -19,6 +19,7 @@
 
         <jspecify.version>1.0.0</jspecify.version>
         <mapstruct.version>1.6.3</mapstruct.version>
+        <assertj.version>3.27.6</assertj.version>
     </properties>
 
     <dependencyManagement>
@@ -47,6 +48,12 @@
                 <groupId>org.jspecify</groupId>
                 <artifactId>jspecify</artifactId>
                 <version>${jspecify.version}</version>
+            </dependency>
+            <!-- Why this is not in the Quarkus BOM; https://github.com/quarkusio/quarkus/issues/38689 -->
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
