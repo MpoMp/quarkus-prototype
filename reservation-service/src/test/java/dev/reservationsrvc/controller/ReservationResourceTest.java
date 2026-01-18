@@ -46,4 +46,20 @@ class ReservationResourceTest {
                         "endDate", equalTo(endDate)
                 );
     }
+
+    @Test
+    public void getAllCars() {
+        //ensures the mock GQL client is used for inventory
+        RestAssured
+                .given()
+                .contentType(ContentType.JSON)
+                .when()
+                .get(reservationResource + "/availability?startDate=2022-01-01&endDate=2022-01-05")
+                .then()
+                .statusCode(200)
+                .body(
+                        equalToCompressingWhiteSpace("""
+                                                             [{"id":111,"licensePlate":"ABC1234","manufacturer":"Peugeot","model":"506"}]""")
+                );
+    }
 }
