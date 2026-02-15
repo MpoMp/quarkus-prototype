@@ -15,11 +15,14 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.SecurityContext;
 import org.jboss.resteasy.reactive.RestQuery;
 import org.jboss.resteasy.reactive.RestResponse;
 import org.jboss.resteasy.reactive.server.ServerExceptionMapper;
 import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashMap;
@@ -35,14 +38,17 @@ public class ReservationResource {
     private final ReservationManager reservationManager;
     private final CarManager carManager;
     private final ReservationReqRspMapper reservationReqRspMapper;
+    private final SecurityContext securityContext;
 
     @Inject
     public ReservationResource(ReservationManager reservationManager,
                                CarManager carManager,
-                               ReservationReqRspMapper reservationReqRspMapper) {
+                               ReservationReqRspMapper reservationReqRspMapper,
+                               SecurityContext securityContext) {
         this.reservationManager = reservationManager;
         this.carManager = carManager;
         this.reservationReqRspMapper = reservationReqRspMapper;
+        this.securityContext = securityContext;
     }
 
     /**
@@ -90,12 +96,32 @@ public class ReservationResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public ReservationRsp make(@Valid ReservationReq reservationRequest) {
+        String userId = getUserId();
+
         ValidationUtils.validateDateInterval(reservationRequest.startDate(), reservationRequest.endDate());
-        var reservationDto = reservationReqRspMapper.mapToDto(reservationRequest);
+        var reservationDto = reservationReqRspMapper.mapToDto(reservationRequest, userId);
 
         ReservationDto createdReservation = reservationManager.createReservation(reservationDto);
         return reservationReqRspMapper.mapFromDto(createdReservation);
     }
 
 
+
+    @GET
+    @Path("all")
+    public Collection<ReservationRsp> allReservations() {
+        String userId = getUserId();
+
+        List<ReservationRsp> list = reservationManager.findAll().stream()
+                                            .filter(reservation -> userId == null || userId.equals(reservation.userId()))
+                                            .map(reservationReqRspMapper::mapFromDto)
+                                            .toList();
+        return list;
+    }
+
+    @Nullable
+    private String getUserId() {
+        Principal userPrincipal = securityContext.getUserPrincipal();
+        return (userPrincipal != null) ? userPrincipal.getName() : null;
+    }
 }

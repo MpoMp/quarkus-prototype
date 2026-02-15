@@ -3,6 +3,7 @@ package dev.reservationsrvc.biz.reservation;
 import dev.reservationsrvc.persistence.reservation.Reservation;
 import dev.reservationsrvc.util.ValidationUtils;
 import org.jspecify.annotations.NullMarked;
+import org.jspecify.annotations.Nullable;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -18,10 +19,11 @@ public record ReservationDto(
         Optional<Long> id,
         Long carId,
         LocalDate startDate,
-        LocalDate endDate
+        LocalDate endDate,
+        @Nullable  String userId
 ) {
-    public ReservationDto(Long carId, LocalDate startDate, LocalDate endDate) {
-        this(Optional.empty(), carId, startDate, endDate);
+    public ReservationDto(Long carId, LocalDate startDate, LocalDate endDate, String userId) {
+        this(Optional.empty(), carId, startDate, endDate, userId);
     }
 
     /**

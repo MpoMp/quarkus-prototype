@@ -41,7 +41,7 @@ class ReservationResourceTest {
                 .statusCode(200)
                 .body(
                         "id", notNullValue(),
-                        "car", nullValue(), // we used a random car ID
+                        "carId", equalTo(484),
                         "startDate", equalTo(startDate),
                         "endDate", equalTo(endDate)
                 );

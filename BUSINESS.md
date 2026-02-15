@@ -10,6 +10,9 @@ There's the `sandbox` module which contains dummy, PoC or experimental code.
 The Reservation Service provides cars available for rent at specific dates. 
 It also controls the reservations themselves. 
 
+Users service integrates with Keycloak so as to access the reservation service securely. 
+On dev mode, this service is also responsible for starting the Keycloak server.
+
 ## Port mapping 
 
 `localhost`
@@ -18,4 +21,5 @@ It also controls the reservations themselves.
 - Rental -> 8082 
 - Inventory -> 8083 
 - Billing -> 8084 
+- Users -> 8085
 

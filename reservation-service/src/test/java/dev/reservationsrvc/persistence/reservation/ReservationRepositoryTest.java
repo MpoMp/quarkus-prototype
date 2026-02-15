@@ -19,7 +19,8 @@ class ReservationRepositoryTest {
     public void createReservation() {
         Reservation reservation = new Reservation(384L,
                                                   LocalDate.now().plusDays(5),
-                                                  LocalDate.now().plusDays(12)
+                                                  LocalDate.now().plusDays(12),
+                                                  "someone"
         );
 
         Reservation result = unitUnderTest.save(reservation);

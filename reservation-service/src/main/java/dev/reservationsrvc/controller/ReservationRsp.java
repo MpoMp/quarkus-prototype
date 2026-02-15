@@ -8,8 +8,9 @@ import java.util.Optional;
 @NullMarked
 public record ReservationRsp(
         Long id,
-        CarRsp car,
+        Long carId,
         LocalDate startDate,
-        LocalDate endDate
+        LocalDate endDate,
+        String userId
 ) {
 }

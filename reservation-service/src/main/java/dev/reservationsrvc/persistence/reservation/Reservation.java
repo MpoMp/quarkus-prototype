@@ -17,10 +17,11 @@ public record Reservation(
         @Nullable Long id,
         Long carId,
         LocalDate startDate,
-        LocalDate endDate
+        LocalDate endDate,
+        @Nullable String userId
 ) {
-    public Reservation(Long carId, LocalDate startDate, LocalDate endDate) {
-        this(null, carId, startDate, endDate);
+    public Reservation(Long carId, LocalDate startDate, LocalDate endDate, String userId) {
+        this(null, carId, startDate, endDate, userId);
     }
 
     /**
@@ -45,6 +46,6 @@ public record Reservation(
     }
 
     public Reservation copyWithId(Long id) {
-        return new Reservation(id, carId, startDate, endDate);
+        return new Reservation(id, carId, startDate, endDate, userId);
     }
 }

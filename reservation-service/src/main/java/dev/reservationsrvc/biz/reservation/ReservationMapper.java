@@ -11,7 +11,7 @@ import org.mapstruct.MappingConstants;
 interface ReservationMapper {
     ReservationDto mapToDto(Reservation reservation);
 
-    default Reservation mapFromDto(ReservationDto dto){
-        return new Reservation(dto.carId(), dto.startDate(), dto.endDate());
+    default Reservation mapFromDto(ReservationDto dto) {
+        return new Reservation(dto.carId(), dto.startDate(), dto.endDate(), dto.userId());
     }
 }

@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>dev.mbogdanos</groupId>
-    <artifactId>reservation-service</artifactId>
+    <artifactId>users-service</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -27,14 +27,30 @@
     </properties>
 
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>io.quarkus</groupId>-->
+<!--            <artifactId>quarkus-qute</artifactId>-->
+<!--        </dependency>-->
+
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-jackson</artifactId>
+            <artifactId>quarkus-rest-qute</artifactId>
         </dependency>
 
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-rest-client-jackson</artifactId>
+        </dependency>
+
+        <!-- Fires up Keycloak in dev mode! -->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-oidc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-rest-client-oidc-token-propagation</artifactId>
         </dependency>
 
         <dependency>
@@ -58,21 +74,6 @@
             <artifactId>mapstruct</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-graphql-client</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-oidc</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>dev.mbogdanos.</groupId>
-            <artifactId>rental-integration-contract</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
 
         <!-- PROVIDED SCOPE -->
         <dependency>
@@ -126,14 +127,6 @@
                 <version>${compiler-plugin.version}</version>
                 <configuration>
                     <parameters>true</parameters>
-
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.mapstruct</groupId>
-                            <artifactId>mapstruct-processor</artifactId>
-                            <version>${mapstruct.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
 
                     <compilerArgs>
                         <!-- Fail on unmapped properties by default! -->

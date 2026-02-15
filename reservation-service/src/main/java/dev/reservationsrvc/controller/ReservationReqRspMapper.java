@@ -11,7 +11,12 @@ import org.mapstruct.MappingConstants;
        config = RelaxedMapperConfig.class
 )
 interface ReservationReqRspMapper {
-    ReservationDto mapToDto(ReservationReq reservation);
+   default ReservationDto mapToDto(ReservationReq reservation, String userId){
+       return new ReservationDto(reservation.carId(),
+                                 reservation.startDate(),
+                                 reservation.endDate(),
+                                 userId);
+   }
 
     ReservationRsp mapFromDto(ReservationDto reservation);
 }

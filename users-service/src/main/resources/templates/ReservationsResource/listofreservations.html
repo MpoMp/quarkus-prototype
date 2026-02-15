@@ -1,0 +1,22 @@
+{@dev.usersrvc.domain.Reservation[] reservations}
+
+<div id="listofreservations">
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Car ID</th>
+        <th>Start date</th>
+        <th>End date</th>
+    </tr>
+    </thead>
+    {#for i in reservations}
+        <tr>
+        <td>{i.id}</td>
+        <td>{i.carId}</td>
+        <td>{i.startDate}</td>
+        <td>{i.endDate}</td>
+        </tr>
+     {/for}
+</table>
+</div>

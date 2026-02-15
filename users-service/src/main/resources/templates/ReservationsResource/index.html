@@ -1,0 +1,45 @@
+{!These are optional but help Qute ensure type safety.!}
+{@java.lang.String name}
+{@java.time.LocalDate startDate}
+{@java.time.LocalDate endDate}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Reservations</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <script src="https://unpkg.com/htmx.org@2.0.8">
+    </script>
+</head>
+
+<header>
+    <h1>R E S E R V A T I O N Z</h1>
+    <p>Hello {name}!</p>
+    <a href="/logout">Log out</a>
+</header>
+
+<body>
+    <h2>Reservation list</h2>
+    <div id="reservations" hx-get="/get" hx-trigger="load">
+        <!-- To be replaced by the result of calling /get.-->
+    </div>
+
+    <h2>Available cars to rent</h2>
+    <form hx-get="/available" hx-target="#availability">
+        <p>Start date:<input id="startDateInput" type="date" name="startDate" value="{startDate}"/></p>
+        <p>End date:<input id="endDateInput" type="date" name="endDate" value="{endDate}"/></p>
+        <input type="submit" value="Update list"/>
+    </form>
+
+    <!-- update-available-cars-list is a custom event name -->
+    <!-- the two include fields need to be the input ones, not the Qute params, so that we ensure we handle the updated user choices -->
+    <div id="availability" hx-get="/available"
+            hx-trigger="load, update-available-cars-list from:body"
+            hx-include="[id='startDateInput'], [id='endDateInput']">
+        <!-- To be replaced by the result of calling /available.-->
+    </div>
+</body>
+
+</html>

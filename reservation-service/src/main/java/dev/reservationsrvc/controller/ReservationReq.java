@@ -1,12 +1,13 @@
 package dev.reservationsrvc.controller;
 
 import jakarta.validation.constraints.NotNull;
+import org.jspecify.annotations.NullMarked;
 
 import java.time.LocalDate;
 
+@NullMarked
 public record ReservationReq(
-        @NotNull Long carId,
-        @NotNull LocalDate startDate,
-        @NotNull LocalDate endDate
-) {
-}
+        Long carId,
+        LocalDate startDate,
+        LocalDate endDate
+) { }
