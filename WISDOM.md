@@ -19,3 +19,5 @@
 - `quarkus-smallrye-graphql` does not add classes that are imported from other modules, into the generated schema. So, 
   the classes need to live in the same (server) module.
 - Native testing; Mocking and injection in tests are not supported.
+- Quarkus CLI; avoid it because it has inconsistent behaviour on dev mode. Mapstruct and port config seem to be ignored at times.
+- 

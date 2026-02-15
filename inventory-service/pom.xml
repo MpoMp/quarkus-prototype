@@ -98,6 +98,14 @@
                 <configuration>
                     <parameters>true</parameters>
 
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+
                     <compilerArgs>
                         <!-- Fail on unmapped properties by default! -->
                         <arg>

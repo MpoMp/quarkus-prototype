@@ -18,9 +18,11 @@ public class InventoryGqlApi {
     private final CarMapper carMapper;
 
     @Inject
-    public InventoryGqlApi(CarInventory carInventory) {
+    public InventoryGqlApi(CarInventory carInventory,
+                           CarMapper carMapper) {
         this.carInventory = carInventory;
-        this.carMapper = Mappers.getMapper(CarMapper.class);
+       // this.carMapper = CarMapper.INSTANCE;
+        this.carMapper = carMapper;
     }
 
 
