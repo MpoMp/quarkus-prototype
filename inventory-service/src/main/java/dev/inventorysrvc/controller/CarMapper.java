@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 
 @Type
-@Mapper(componentModel = MappingConstants.ComponentModel.CDI)
+@Mapper // no CDI because of https://github.com/quarkusio/quarkus/issues/39392, where the workaround won't work either
 interface CarMapper {
     CarView map(Car car);
 

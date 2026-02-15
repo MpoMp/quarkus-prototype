@@ -7,6 +7,7 @@ import jakarta.inject.Inject;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Mutation;
 import org.eclipse.microprofile.graphql.Query;
+import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
@@ -17,10 +18,9 @@ public class InventoryGqlApi {
     private final CarMapper carMapper;
 
     @Inject
-    public InventoryGqlApi(CarInventory carInventory,
-                           CarMapper carMapper) {
+    public InventoryGqlApi(CarInventory carInventory) {
         this.carInventory = carInventory;
-        this.carMapper = carMapper;
+        this.carMapper = Mappers.getMapper(CarMapper.class);
     }
 
 

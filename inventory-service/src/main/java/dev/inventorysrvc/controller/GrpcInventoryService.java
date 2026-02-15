@@ -11,6 +11,7 @@ import io.smallrye.mutiny.Multi;
 import io.smallrye.mutiny.Uni;
 import jakarta.inject.Inject;
 import org.jspecify.annotations.NullMarked;
+import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,12 +22,10 @@ import java.util.Optional;
 public class GrpcInventoryService implements dev.inventorysrvc.contract.InventoryService {
 
     private final CarInventory carInventory;
-    private final CarMapper carMapper;
 
     @Inject
-    public GrpcInventoryService(CarInventory carInventory, CarMapper carMapper) {
+    public GrpcInventoryService(CarInventory carInventory) {
         this.carInventory = carInventory;
-        this.carMapper = carMapper;
     }
 
     @Override
