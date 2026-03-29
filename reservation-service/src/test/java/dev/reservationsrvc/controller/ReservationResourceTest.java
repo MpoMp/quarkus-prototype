@@ -1,6 +1,5 @@
 package dev.reservationsrvc.controller;
 
-import dev.reservationsrvc.persistence.reservation.Reservation;
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.common.http.TestHTTPResource;
 import io.quarkus.test.junit.QuarkusTest;
@@ -12,7 +11,6 @@ import java.net.URL;
 import java.time.LocalDate;
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
 class ReservationResourceTest {

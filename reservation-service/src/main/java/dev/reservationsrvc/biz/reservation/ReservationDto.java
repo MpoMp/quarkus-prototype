@@ -1,6 +1,5 @@
 package dev.reservationsrvc.biz.reservation;
 
-import dev.reservationsrvc.persistence.reservation.Reservation;
 import dev.reservationsrvc.util.ValidationUtils;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
